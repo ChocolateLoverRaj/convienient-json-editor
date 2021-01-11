@@ -22,7 +22,13 @@ const schema: Schema = {
 
 const App = (): JSX.Element => (
   <>
-    <Editor schema={schema} readOnly />
+    <Editor schema={schema} defaultValue={{
+      number: 100,
+      object: {
+        subProp1: 1,
+        subProp2: 2
+      }
+    }} />
   </>
 )
 

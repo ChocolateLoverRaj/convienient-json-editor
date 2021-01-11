@@ -31,7 +31,7 @@ const Editor = (props: Props): JSX.Element => {
                 <tr key={index}>
                   <th>{name}</th>
                   <td>
-                    <Editor schema={schema} readOnly={props.readOnly} />
+                    <Editor schema={schema} readOnly={props.readOnly} defaultValue={props.defaultValue?.[name]} />
                   </td>
                 </tr>
               ))}
@@ -40,7 +40,7 @@ const Editor = (props: Props): JSX.Element => {
         </>
       )
     case 'number':
-      return <input type='number' readOnly={props.readOnly} />
+      return <input type='number' readOnly={props.readOnly} defaultValue={props.defaultValue} />
   }
   
 }
