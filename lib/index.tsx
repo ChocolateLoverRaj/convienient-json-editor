@@ -2,15 +2,15 @@ export interface NumberSchema {
   type: 'number'
 }
 
-export interface ObjectSchema<Props extends string> {
+export interface ObjectSchema {
   type: 'object'
   properties: {
-    [name: Props]: Schema
+    [name: string]: Schema
   }
-  required?: Props[]
+  required?: string[]
 }
 
-export type Schema = NumberSchema | ObjectSchema<string>
+export type Schema = NumberSchema | ObjectSchema
 
 interface Props {
   schema: Schema
