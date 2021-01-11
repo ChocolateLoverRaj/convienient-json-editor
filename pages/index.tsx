@@ -22,7 +22,7 @@ const schema: Schema = {
 
 const App = (): JSX.Element => (
   <>
-    <Editor schema={schema} />
+    <Editor schema={schema} readOnly />
   </>
 )
 

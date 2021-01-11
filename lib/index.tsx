@@ -14,6 +14,10 @@ export type Schema = NumberSchema | ObjectSchema
 
 interface Props {
   schema: Schema
+  value?: any
+  defaultValue?: any
+  onChange?: (value: any) => unknown
+  readOnly?: boolean
 }
 
 const Editor = (props: Props): JSX.Element => {
@@ -27,7 +31,7 @@ const Editor = (props: Props): JSX.Element => {
                 <tr key={index}>
                   <th>{name}</th>
                   <td>
-                    <Editor schema={schema} />
+                    <Editor schema={schema} readOnly={props.readOnly} />
                   </td>
                 </tr>
               ))}
@@ -36,7 +40,7 @@ const Editor = (props: Props): JSX.Element => {
         </>
       )
     case 'number':
-      return <input type='number' />
+      return <input type='number' readOnly={props.readOnly} />
   }
   
 }
