@@ -25,7 +25,7 @@ interface NumberProps extends Props {
 }
 const NumberEditor = (props: NumberProps): JSX.Element => (
   <input type='number' readOnly={props.readOnly} defaultValue={props.defaultValue} value={props.value} onChange={e => {
-    props.onChange(parseInt(e.target.value))
+    props.onChange?.(parseInt(e.target.value))
   }} />
 )
 
