@@ -1,5 +1,6 @@
 import styles from './index.module.scss'
 import { useState } from 'react'
+import { validate } from 'jsonschema'
 
 export interface NumberSchema {
   type: 'number'
@@ -53,18 +54,20 @@ const ObjectEditor = (props: ObjectProps): JSX.Element => {
   return (
     <table className={styles.table}>
       <thead>
-        <th>
-          <span 
-            className={styles.arrow}
-            onClick={() => {
-              setCollapsed(!collapsed)
-            }}
-          >{collapsed
-            ? '\u25BA'
-            : '\u25BC'}
-          </span>
-          Object
-        </th>
+        <tr>
+          <th>
+            <span 
+              className={styles.arrow}
+              onClick={() => {
+                setCollapsed(!collapsed)
+              }}
+            >{collapsed
+              ? '\u25BA'
+              : '\u25BC'}
+            </span>
+            Object
+          </th>
+        </tr>
       </thead>
       <tbody>
         {!collapsed && Object.entries(props.schema.properties).map(([name, schema], index) => (
