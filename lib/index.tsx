@@ -51,7 +51,7 @@ interface ObjectProps extends Props {
 const ObjectEditor = (props: ObjectProps): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false)
   return (
-    <table>
+    <table className={styles.table}>
       <thead>
         <th>
           <span 
