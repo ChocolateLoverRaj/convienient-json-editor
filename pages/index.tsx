@@ -9,6 +9,9 @@ const schema: Schema = {
     number: {
       type: 'number'
     },
+    string: {
+      type: 'string'
+    },
     object: {
       type: 'object',
       properties: {
@@ -30,6 +33,7 @@ interface PrettyPrintWindow {
 const App = (): JSX.Element => {
   const [json, setJson] = useState({
     number: 100,
+    string: 'hi',
     object: {
       subProp1: 1,
       subProp2: 2

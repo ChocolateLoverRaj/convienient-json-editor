@@ -2,6 +2,10 @@ export interface NumberSchema {
   type: 'number'
 }
 
+export interface StringSchema {
+  type: 'string'
+}
+
 export interface ObjectSchema {
   type: 'object'
   properties: {
@@ -10,7 +14,7 @@ export interface ObjectSchema {
   required?: string[]
 }
 
-export type Schema = NumberSchema | ObjectSchema
+export type Schema = NumberSchema | StringSchema | ObjectSchema
 
 interface Props {
   schema: Schema
@@ -26,6 +30,15 @@ interface NumberProps extends Props {
 const NumberEditor = (props: NumberProps): JSX.Element => (
   <input type='number' readOnly={props.readOnly} defaultValue={props.defaultValue} value={props.value} onChange={e => {
     props.onChange?.(parseInt(e.target.value))
+  }} />
+)
+
+interface StringProps extends Props {
+  schema: StringSchema
+}
+const StringEditor = (props: StringProps): JSX.Element => (
+  <input readOnly={props.readOnly} defaultValue={props.defaultValue} value={props.value} onChange={e => {
+    props.onChange?.(e.target.value)
   }} />
 )
 
@@ -56,12 +69,13 @@ const ObjectEditor = (props: ObjectProps): JSX.Element => (
 
 const Editor = (props: Props): JSX.Element => {
   switch(props.schema.type) {
-    case 'object':
-      props.schema
-      return <ObjectEditor {...props} schema={props.schema} />
+    case 'string':
+      return <StringEditor {...props} schema={props.schema} />
     case 'number':
       props.schema
       return <NumberEditor {...props} schema={props.schema} />
+    case 'object':
+      return <ObjectEditor {...props} schema={props.schema} />
   }
   
 }
