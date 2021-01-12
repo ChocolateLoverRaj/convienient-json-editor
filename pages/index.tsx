@@ -31,7 +31,7 @@ const App = (): JSX.Element => {
       subProp2: 2
     }
   })
-  const toHtml = (prettyPrintJson ?? window.prettyPrintJson).toHtml
+  const toHtml = (prettyPrintJson ?? (window.prettyPrintJson as typeof prettyPrintJson)).toHtml
   return (
     <>
       <Head>
