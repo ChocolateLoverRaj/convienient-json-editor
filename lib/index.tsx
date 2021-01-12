@@ -57,9 +57,11 @@ const ObjectEditor = (props: ObjectProps): JSX.Element => (
 const Editor = (props: Props): JSX.Element => {
   switch(props.schema.type) {
     case 'object':
-      return <ObjectEditor {...props} />
+      props.schema
+      return <ObjectEditor {...props} schema={props.schema} />
     case 'number':
-      return <NumberEditor {...props} />
+      props.schema
+      return <NumberEditor {...props} schema={props.schema} />
   }
   
 }
