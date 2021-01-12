@@ -23,6 +23,10 @@ const schema: Schema = {
   }
 }
 
+interface PrettyPrintWindow {
+  prettyPrintJson: typeof prettyPrintJson
+}
+
 const App = (): JSX.Element => {
   const [json, setJson] = useState({
     number: 100,
@@ -31,7 +35,7 @@ const App = (): JSX.Element => {
       subProp2: 2
     }
   })
-  const toHtml = (prettyPrintJson ?? (window.prettyPrintJson as typeof prettyPrintJson)).toHtml
+  const toHtml = (prettyPrintJson ?? (window as unknown as PrettyPrintWindow).prettyPrintJson).toHtml
   return (
     <>
       <Head>
