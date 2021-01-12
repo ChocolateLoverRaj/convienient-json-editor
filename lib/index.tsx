@@ -1,3 +1,6 @@
+import styles from './index.module.scss'
+import { useState } from 'react'
+
 export interface NumberSchema {
   type: 'number'
 }
@@ -45,11 +48,26 @@ const StringEditor = (props: StringProps): JSX.Element => (
 interface ObjectProps extends Props {
   schema: ObjectSchema
 }
-const ObjectEditor = (props: ObjectProps): JSX.Element => (
-  <>
+const ObjectEditor = (props: ObjectProps): JSX.Element => {
+  const [collapsed, setCollapsed] = useState(false)
+  return (
     <table>
+      <thead>
+        <th>
+          <span 
+            className={styles.arrow}
+            onClick={() => {
+              setCollapsed(!collapsed)
+            }}
+          >{collapsed
+            ? '\u25BA'
+            : '\u25BC'}
+          </span>
+          Object
+        </th>
+      </thead>
       <tbody>
-        {Object.entries(props.schema.properties).map(([name, schema], index) => (
+        {!collapsed && Object.entries(props.schema.properties).map(([name, schema], index) => (
           <tr key={index}>
             <th>{name}</th>
             <td>
@@ -64,8 +82,8 @@ const ObjectEditor = (props: ObjectProps): JSX.Element => (
         ))}
       </tbody>
     </table>
-  </>
-)
+  )
+}
 
 const Editor = (props: Props): JSX.Element => {
   switch(props.schema.type) {
