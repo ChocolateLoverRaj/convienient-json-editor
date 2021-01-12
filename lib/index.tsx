@@ -41,7 +41,7 @@ const ObjectEditor = (props: ObjectProps): JSX.Element => (
             <th>{name}</th>
             <td>
               <Editor schema={schema} readOnly={props.readOnly} defaultValue={props.defaultValue?.[name]} value={props.value?.[name]} onChange={value => {
-                props.onChange({
+                props.onChange?.({
                   ...props.value,
                   [name]: value
                 })
